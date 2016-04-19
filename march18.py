@@ -25,7 +25,7 @@ def ana(word):
             times += 1
     return True
 
-# largest difference
+# largest difference in a list
 def diff(mylist):
     max_i = 0
     min_i = 0
