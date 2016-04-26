@@ -43,7 +43,7 @@ def revstring(mystr):
 def parChecker(symbolString):
     """ implements the Stack class
     returns a boolean result as to whether
-    the string of parentheses is balanced"""
+    the string of parentheses is balanced """
 
     s = Stack()
     balanced = True
@@ -59,6 +59,7 @@ def parChecker(symbolString):
                 balanced = False
             else:
                 top = s.pop()
+                # todo
                 if not opens.index(opens) == close.index(close):
                     balanced = False
 
@@ -87,13 +88,13 @@ def divideBy2(num):
 
 def baseConverter(num, base):
     """ takes any decimal number and any base between 2 - 16
-    as parameters. """
+    as parameters """
 
     # help w bases above 9
     # stores the digits in their corresponding positions
     digits = "0123456789ABCDEF"
 
-    # hexadecimal uses the ten decimal digits
+    # hexadecimal uses ten decimal digits
     # along with the first six alphabet characters for the 16 digits
 
     r = Stack()
