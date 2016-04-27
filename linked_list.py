@@ -1,4 +1,4 @@
-// print linked list backwards
+# print linked list backwards
 
 class Node(self):
     def __init__(self, data=None, next=None):
