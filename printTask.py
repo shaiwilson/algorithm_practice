@@ -89,14 +89,14 @@ def simulation(numSeconds, pagesPerMinute):
 
 
 def newPrintTask():
-    num = random.randrange(1, 181)
-    if num == 180:
+    num = random.randrange(1, 90)
+    if num == 90:
         return True
     else:
         return False
 
-for i in xrange(10):
-    simulation(3600, 5)
+for i in xrange(20): #num students
+    simulation(3600, 10) #5 print jobs per minute 
 
 
 
