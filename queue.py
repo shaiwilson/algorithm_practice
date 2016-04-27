@@ -4,8 +4,7 @@ call its to be used for counting. It will return the name
 of the last person remaining after repetitive counting by num. """
 
 
-
-Class Queue:
+class Queue:
     def __init__(self):
         self.items = []
 
