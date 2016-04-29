@@ -33,19 +33,6 @@ class LinkedList:
             return None
 
 
-    # def print_backwards(mylist):
-    #     if mylist == None: return
-    #     head = mylist
-    #     tail = mylist.next
-    #     print_backwards(tail)
-    #     print head,
-
-    # def print_list(mylist):
-    #     if mylist == None: return
-    #     while node:
-    #         print node,
-    #         node = node.next
-
 class Stack:
     def __init__(self,top=None):
         self.ll = LinkedList(top)
