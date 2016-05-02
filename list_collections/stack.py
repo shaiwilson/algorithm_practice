@@ -1,12 +1,14 @@
 import test 
-
+# this stack implementation assumes that the end of the list
+# will hold the top element of the stack. as the stack grows(push)
+# new items will be added on the end of the list. pop operations
+# will manipulate that same end
 
 class Stack():
     # 0(1) append and pop
     # will perform in constant time no matter how many items
     # are on the stacks
 
-    # insert(0) and pop(0) require 0(n)
     def __init__(self):
         self.items = []
 

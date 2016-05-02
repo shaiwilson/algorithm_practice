@@ -43,7 +43,7 @@ print "(())()" ,brackets("(())()")
 
 # fibonnaci
 def fib(x):
-    if x == 1:
+    if x == 1 :
         return 0
     elif x == 2:
         return 1
