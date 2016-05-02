@@ -1,8 +1,11 @@
 #!/usr/bin/python
+# author: shai wilson
 
-""" This command line tool parses a json file and uses a 
-command line string query to locate the nearest alpha or numeric 
-match in the json file """
+""" This command line tool reads in contacts.json as its data source
+and takes one argument, a search query, 
+and prints out an ordered list of JSON normalized results, 
+ranked with the most relevant contacts first.
+"""
 
 # author shai wilson
 import sys
@@ -17,43 +20,46 @@ def main(data, argv):
         raise ValueError("Please include a search query")
         sys.exit(1)
     else:
-        # the search query
         query = sys.argv[1]
-
-    print query
-
 
     seen = set()
     result = []
+    pattern = "(" + "^" + query + "+" + "\w+)"
+
     # json is an array with multiple objects inside
     # so when I read it in I get a list with a dict inside
     # you can access the dict by accessing item[index]
-    #grab all the fields
-    found = False
+
     for i in xrange(len(data) - 1):
         curr = data[i]
         for key, value in curr.items():
             # print key, value
-            value.strip()
+            value = value.strip()
             value = value.lower()
             # match if any words starts with the query
-
-            if 'name' in curr:
+            if 'name'in curr:
                 lookup = curr['name'].strip()
-                if lookup not in seen and re.match(r"(" + query + "\w+)", lookup):
-                    temp = data[i]
-                    seen.add(lookup)
-                    result.append(temp)
-            else: 
-                m = re.findall((r"(" + query + "\w+)"), value)
+                if lookup not in seen:
+                    m = re.match(pattern, value)
+                    if m:
+                        temp = data[i]
+                        seen.add(lookup)
+                        result.append(temp)
+                    else:
+                        # single letter
+                        if len(query) == 1:
+                            continue
+                        elif re.search(query, value):
+                            temp = data[i]
+                            seen.add(lookup)
+                            result.append(temp)
+
 
     print json.dumps(result, sort_keys=False,
                   indent=4, separators=(',', ': '))
 
-    
 
 if __name__ == "__main__":
-    
     try:
         with open("contacts.json") as f:
             data = json.load(f)
