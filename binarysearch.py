@@ -13,12 +13,12 @@ def binarySearch(mylist, item):
     last = len(mylist) - 1
     found = False
   
-    when first <= last and not found:
-        mid = (first + last)//2
-        if alist[midpoint] == item:
+    while first <= last and not found:
+        midpoint = (first + last)//2
+        if mylist[midpoint] == item:
             found = True
         else:
-            if item < alist[midpoint]:
+            if item < mylist[midpoint]:
                 last = midpoint - 1
             else:
                 first = midpoint + 1
