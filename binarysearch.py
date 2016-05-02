@@ -1,6 +1,13 @@
 # binary search
 import test
 
+# complexity
+# the number of overal iterations
+# will increase everytime the exponent
+# on the power of 2 increases
+
+# 0(log (n)
+
 def binarySearch(mylist, item):
     first = 0
     last = len(mylist) - 1
