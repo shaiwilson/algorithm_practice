@@ -71,22 +71,25 @@ def main(data, argv):
         # to build a rank map
         # sort by value instead return name
         rank_map = sorted(freq, key=freq.__getitem__, reverse=True)
-        # print "***"
-        # print rank_map
-        # print "***"
+
         # build an index dictionary 
         order_dict = {name: index for index, name in enumerate(rank_map)}
+      
 
-        for i in xrange(len(result) - 1):
+        new_final = [0] * len(order_dict)
+
+        for i in xrange(len(result)):
             curr = result[i]
-            lst = curr.items()
-            new_list = map(operator.itemgetter(1), lst)
-            final.append(new_list)
 
-        # modify the final list to return sorted
-        final.sort(key=lambda x: order_dict[x[0]])
-        result = final
-        
+            # use the index from order_dict to 
+            # pos the search result by frequency rank
+            temp = curr['name'].strip()
+            index = order_dict[temp]
+            new_final[index] = result[i]
+            
+        result = new_final
+
+
     if result == []:
         print "Your search did not produce any matching results"
     else:
