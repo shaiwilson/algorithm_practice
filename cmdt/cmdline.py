@@ -7,7 +7,6 @@ and prints out an ordered list of JSON normalized results,
 ranked with the most relevant contacts first.
 """
 
-# author shai wilson
 import sys
 import json
 import re
@@ -41,8 +40,7 @@ def main(data, argv):
         
         for key, value in curr.items():
             # print key, value
-            value = value.strip()
-            value = value.lower()
+            value = value.strip().lower()
             # match if any words starts with the query
             if 'name'in curr:
                 lookup = curr['name'].strip()
@@ -62,10 +60,9 @@ def main(data, argv):
                                 temp = data[i]
                                 seen.add(lookup)
                                 result.append(temp)
+                                freq[lookup] = 1
                     else:
                         freq[lookup] += 1
-                       
-
     
     if len(result) > 1:
 
@@ -90,9 +87,11 @@ def main(data, argv):
         final.sort(key=lambda x: order_dict[x[0]])
         result = final
         
-
-    print json.dumps(result, sort_keys=False,
-                  indent=4, separators=(',', ': '))
+    if result == []:
+        print "Your search did not produce any matching results"
+    else:
+        print json.dumps(result, sort_keys=False,
+                    indent=4, separators=(',', ': '))
 
 
 if __name__ == "__main__":
