@@ -64,29 +64,34 @@ def main(data, argv):
                                 result.append(temp)
                     else:
                         freq[lookup] += 1
+                       
 
-    # From greatest to least frequency
-    # use the __getitem__ method as the key function
-    # to build a rank map
-    # sort by value instead return name
-    rank_map = sorted(freq, key=freq.__getitem__, reverse=True)
-    # print "***"
-    # print rank_map
-    # print "***"
-    # build an index dictionary 
-    order_dict = {name: index for index, name in enumerate(rank_map)}
     
-    final = []
-    for i in xrange(len(result) - 1):
-        curr = result[i]
-        lst = curr.items()
-        new_list = map(operator.itemgetter(1), lst)
-        final.append(new_list)
+    if len(result) > 1:
 
-    # modify the final list to return sorted
-    final.sort(key=lambda x: order_dict[x[0]])
+        # From greatest to least frequency
+        # use the __getitem__ method as the key function
+        # to build a rank map
+        # sort by value instead return name
+        rank_map = sorted(freq, key=freq.__getitem__, reverse=True)
+        # print "***"
+        # print rank_map
+        # print "***"
+        # build an index dictionary 
+        order_dict = {name: index for index, name in enumerate(rank_map)}
 
-    print json.dumps(final, sort_keys=False,
+        for i in xrange(len(result) - 1):
+            curr = result[i]
+            lst = curr.items()
+            new_list = map(operator.itemgetter(1), lst)
+            final.append(new_list)
+
+        # modify the final list to return sorted
+        final.sort(key=lambda x: order_dict[x[0]])
+        result = final
+        
+
+    print json.dumps(result, sort_keys=False,
                   indent=4, separators=(',', ': '))
 
 
