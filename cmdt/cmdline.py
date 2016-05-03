@@ -14,6 +14,7 @@ import re
 import pprint
 import unittest
 from collections import OrderedDict
+import operator 
 
 def main(data, argv):
 
@@ -66,28 +67,33 @@ def main(data, argv):
 
     # From greatest to least frequency
     # use the __getitem__ method as the key function
+    # to build a rank map
+    # sort by value instead return name
     rank_map = sorted(freq, key=freq.__getitem__, reverse=True)
-    print "***"
-    print rank_map
-    print "***"
+    # print "***"
+    # print rank_map
+    # print "***"
+    # build an index dictionary 
+    order_dict = {name: index for index, name in enumerate(rank_map)}
     
+    final = []
     for i in xrange(len(result) - 1):
         curr = result[i]
-        print curr['name']
+        lst = curr.items()
+        new_list = map(operator.itemgetter(1), lst)
+        final.append(new_list)
 
+    # modify the final list to return sorted
+    final.sort(key=lambda x: order_dict[x[0]])
 
-    # print json.dumps(result, sort_keys=False,
-    #               indent=4, separators=(',', ': '))
-
-# association function
-def rank(result, rank_map):
-    """ map result strings to their numerical values in rank_map """
-    
+    print json.dumps(final, sort_keys=False,
+                  indent=4, separators=(',', ': '))
 
 
 if __name__ == "__main__":
     try:
         with open("contacts.json") as f:
+            # preserve order of insertion of items into the dict
             data = json.load(f, object_pairs_hook=OrderedDict)
     except ValueError, e:
         print "Could not load JSON object from directory"
