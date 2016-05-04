@@ -11,7 +11,6 @@ class BinaryTree:
         # a node with no existing left tree
         if self.left == None:
             self.left = BinaryTree(newNode)
-
         else:
             newNode = BinaryTree(newNode)
             newNode.left = self.left
