@@ -25,11 +25,53 @@ class LinkedList:
 
     def __init__(self):
         self.head = None
+        self.tail = None
 
     def isEmpty(self):
         return self.head == None
 
-    def add(self,item):
-        temp = Node(item)
-        temp.setNext(self.head)
-        self.head = temp
+    def addNode(self, newdata):
+        newNode = Node(newdata)
+
+        if self.head is None:
+            self.head = newNode
+
+        if self.tail is not None:
+            self.tail.next = newNode
+
+        self.tail = newNode
+
+    # remove a node by value    
+    def removeNode(self, value):
+
+        if self.head and self.head.data == value:
+            self.head = self.head.nex
+            return
+
+        current = self.head
+
+        while current.next is not None:
+            if current.next.data == value:
+                current.next = current.next.next
+                return 
+            else:
+                current = current.next
+
+    def removeNodePrev(self, value):
+        prev = None
+        curr = self.head
+
+        while curr is not None:
+
+            if curr.data == value:
+                if prev is None:
+                    self.head = curr.bext
+                else:
+                    prev.next = curr.next
+                return 
+
+            else:
+                prev = current
+                current = current.next
+
+
