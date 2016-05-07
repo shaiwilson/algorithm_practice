@@ -81,6 +81,89 @@ def check_binary_tree(root):
 
     return True
 
+# ********************************************************
+# version 1
+# the largest element is the right most element
+# o(h) h = height of the tree
+def second_largest_element(root):
+    """ a method to find the second largest element in a binary
+    search tree """
+
+    # case: empty tree
+    if root is None:
+        return None
+
+    # case: we're currently at largest, and
+    # largest has a left subtree
+    # 2nd largest is largest in said subtree
+    if root.left and not root.right:
+        return largest(root.left)
+
+    # case: we're at parent of largest,
+    # and largest has no left subtree
+    # so largest must be current node
+    if root.right and not root.right.left and \
+        not root.right.right:
+            return root.value
+
+    # otherwise: step right
+    return second_largest_element(root.right)
+
+# if there is a right child, that node and the 
+# subtree below it are all greater than the current node
+# step down to this child and recurse
+
+# else there is no right child and we're already at the rightmost
+# element so we return its value
+
+def largest(root):
+    if root.right:
+        return largest(root.right)
+    return root.value
+
+# *****************************************************************************
+
+# ********************************************************
+# version 2
+# the largest element is the right most element
+# o(h) h = height of the tree
+
+def largest(root):
+    curr = root
+    while curr:
+        if not curr.right:
+            return curr.value
+        curr = curr.right
+ 
+
+def second_largest_element(root):
+    """ a method to find the second largest element in a binary
+    search tree """
+
+    if not (root.left or root.right):
+        raise Exception('Tree must have at least 2 nodes')
+
+    curr = root
+
+    while curr:
+        if curr.left and not curr.right:
+            return largest(curr.left)
+
+        if curr.right and \
+            not curr.right.left and \
+            not curr.right.right:
+                return curr.value
+
+        curr = curr.right
+
+
+
+
+
+
+# *****************************************************************************
+
+
 r = BinaryTree('a')
 r.insertLeft('b')
 r.insertRight('c')
