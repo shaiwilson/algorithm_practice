@@ -1,3 +1,24 @@
+def ana_of_pal(str):
+    """ is the word an anagram of a palindrome? """
+
+    seen = {}
+
+    # count each letter
+
+    for letter in word:
+        cound = seen.get(letter, 0)
+        seen[letter] = count + 1
+
+    # it's a palindrome if the number of odd counts is 0 or 1
+    seen_an_odd = False
+
+    for count in seen.values():
+        if count %2 != 0:
+            if seen_an_odd:
+                return False
+            seen_an_odd = True
+    return True
+
 
 def dec2bin(num, base):
     """Convert a decimal number to binary representation."""

@@ -31,6 +31,7 @@ class LinkedList:
             return delete_elem
         else:
             return None
+    
 
 
 class Stack:
