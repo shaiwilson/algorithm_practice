@@ -126,7 +126,8 @@ def largest(root):
 # ********************************************************
 # version 2
 # the largest element is the right most element
-# o(h) h = height of the tree
+# time = o(h) h = height of the tree 0(log n) if the tree is balanced
+# 0(1) space
 
 def largest(root):
     curr = root
@@ -155,10 +156,6 @@ def second_largest_element(root):
                 return curr.value
 
         curr = curr.right
-
-
-
-
 
 
 # *****************************************************************************
