@@ -128,7 +128,12 @@ def isPermutation2(word, thestr):
 
     return True
 
-    
+  
+# problem aovid using + and += operators to accumulate a string within
+# a loop. Since strings are immutable, this creates unncessary 
+# temporary objects and results in quadratic rather than linear running time.
+# Instead, add each substring to a list and ''.join the list after
+# the loop terminates  
 def urlify(word):
     """ replace all spaces in a string with '%20'"""
     new_str = ''
@@ -139,10 +144,11 @@ def urlify(word):
         new_str = new_str + letter 
     return new_str
 
+# better version
 def urlify(word):
     """ using a list to store each char and change spaces
     to %20, then join list into a string """
-    
+
     charList = []
 
     for char in word:
